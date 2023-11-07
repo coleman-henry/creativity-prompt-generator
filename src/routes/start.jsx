@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../components/Button';
 import {Link} from 'react-router-dom';
+import './style.css'
 
 
  const Start = () => {
@@ -9,11 +10,10 @@ import {Link} from 'react-router-dom';
         <div>
             <div class="button-container">
             <Link 
-                to ="/schedule"
-                
+                to ="/schedule"  
                 state={{
-                title:"Get Started",
-                subtitle:"Get Prompts once per day or create a custom schedule",
+                title:"Your schedule is all set up!",
+                subtitle:"Push the edit below your schedule to make changes.",
                 isSubmitted: true,
                 className: "submittedweekcontainer"
                 }}>
@@ -25,7 +25,7 @@ import {Link} from 'react-router-dom';
                 title:"Get Started",
                 subtitle:"Get Prompts once per day or create a custom schedule",
                 isSubmitted: false,
-                className: "submittedweekcontainer"
+                className: "weekcontainer"
                 }}>
                 <Button>Custom Schedule</Button>
 

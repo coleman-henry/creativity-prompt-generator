@@ -2,6 +2,7 @@ import React from 'react';
 import"./style.css";
 import {useState} from 'react';
 import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 
 function HourSlot({hourValue, isEditable}){
     //TODO: Move logic for isActive up to setHours
@@ -145,22 +146,45 @@ export default function EditSchedule() {
                 display: isSubmitted ? 'none' : ''
             }}>
 
+            <Link         
+                state={{
+                title:"Your schedule is all set up!",
+                subtitle:"Push the edit below your schedule to make changes.",
+                isSubmitted: true,
+                className: "submittedweekcontainer"
+                }}>
                 <button className="submitbutton"
                 onClick={handleSubmit}>
                     Submit
                 </button>
+            </Link>
+
+
+
                 <p>[This will save changes, but you can always edit your schedule again]</p>
             </div>
+
+
+
 
             <div className="promptcontainer submittedweekcontainer"
             style={{
                 display: isSubmitted ? '' : 'none'
             }}>
                     <h1>Your prompts will appear here!</h1>
+
+                <Link         
+                state={{
+                title:"Get Started",
+                subtitle:"Get Prompts once per day or create a custom schedule",
+                isSubmitted: false,
+                className: "weekcontainer"
+                }}>
                     <button className="editschedulebutton"
                     onClick={handleSubmit}>
                         Edit Schedule
                     </button>
+                </Link>
             </div>
         </div>   
     );
