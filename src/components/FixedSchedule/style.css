@@ -37,6 +37,39 @@
     grid-template-columns: repeat(7, 1fr);
     column-gap: 20px;
 }
+.submittedweekcontainer{
+    display:grid;
+    margin-top: 5px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 1fr 200px;
+    column-gap: 20px;
+}
+
+.submittedweekcontainer .promptcontainer{
+    background-color: rgba(128, 128, 128, 0.267);
+    color: grey;
+    grid-column: 3/6;
+}
+.promptcontainer h1{
+    display: flex;
+    justify-content: center;
+    width: 50.5rem;
+    height: fit-content;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .closebutton{
     position: absolute;
     right: 2px;

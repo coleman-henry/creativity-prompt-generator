@@ -1,6 +1,7 @@
 import React from 'react';
 import"./style.css";
 import {useState} from 'react';
+import { useLocation } from 'react-router';
 
 function HourSlot({hourValue, isEditable}){
     //TODO: Move logic for isActive up to setHours
@@ -96,51 +97,66 @@ function Day({value, isEditable}){
 }
 
 export default function EditSchedule() {
-    const [isSubmitted, setIsSubmitted] = useState("false");
+    const location = useLocation();
+    const [isSubmitted, setIsSubmitted] = useState(location.state?.isSubmitted);
+    const [className, setClassName] = useState("weekcontainer");
+    console.log(location.state?.isSubmitted);
+    
+
     function handleSubmit(){
         setIsSubmitted(!isSubmitted);
+        setClassName("submittedweekcontainer");
+        console.log(className);
     }
     console.log(`isSubmitted? ${isSubmitted}`)
     return(
-        <div className="weekcontainer">
+        <div className={className}>
 
             <div classname="daycontainer">
-                <Day value="Monday" isEditable={isSubmitted}/>
+                <Day value="Monday" isEditable={!isSubmitted}/>
             </div>
 
             <div classname="daycontainer">
-                <Day value="Tuesday"/>
+                <Day value="Tuesday" isEditable={!isSubmitted}/>
             </div>            
             
             <div classname="daycontainer">
-                <Day value="Wednesday"/>
+                <Day value="Wednesday" isEditable={!isSubmitted}/>
             </div>            
             
             <div classname="daycontainer">
-                <Day value="Thursday"/>
+                <Day value="Thursday" isEditable={!isSubmitted}/>
             </div>            
             
             <div classname="daycontainer">
-                <Day value="Friday"/>
+                <Day value="Friday" isEditable={!isSubmitted}/>
             </div>            
             
             <div classname="daycontainer">
-                <Day value="Saturday"/>
+                <Day value="Saturday" isEditable={!isSubmitted}/>
             </div>            
             
             <div classname="daycontainer">
-                <Day value="Sunday"/>
+                <Day value="Sunday" isEditable={!isSubmitted}/>
             </div>
            
     
             <button classname="submitbutton"
             onClick={handleSubmit}
             style={{
-                display: isSubmitted ? '' : 'none',
+                display: isSubmitted ? 'none' : '',
             }}>
                 Submit
             </button>
+
+            <div className="promptcontainer submittedweekcontainer"
+            style={{
+                display: isSubmitted ? '' : 'none'
+            }}>
+                    <h1>Your prompts will appear here!</h1>
+            </div>
      
+            
             
         </div>
     );

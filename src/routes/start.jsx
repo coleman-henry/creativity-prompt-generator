@@ -1,29 +1,33 @@
 import React from 'react';
-import { useLocation } from 'react-router';
 import Button from '../components/Button';
 import {Link} from 'react-router-dom';
 
 
- const Start = (props) => {
-    const location = useLocation();
-    const {title} = location.state;
-    const {subtitle} = location.state;
-    
-    
+ const Start = () => {
+   
     return (      
         <div>
             <div class="button-container">
             <Link 
-                to ="/scheduleIsSet" 
+                to ="/scheduleIsSet"
+                
                 state={{
                 title:"Get Started",
-                subtitle:"Get Prompts once per day or create a custom schedule"
+                subtitle:"Get Prompts once per day or create a custom schedule",
+                isSubmitted: true,
                 }}>
               <Button> Default Schedule </Button>
             </Link>
-                <Button>
-                    Custom Schedule
-                </Button>
+            <Link 
+                to ="/scheduleIsSet" 
+                state={{
+                title:"Get Started",
+                subtitle:"Get Prompts once per day or create a custom schedule",
+                isSubmitted: false,
+                }}>
+                <Button>Custom Schedule</Button>
+
+            </Link>
             </div>
         </div>
     );

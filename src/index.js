@@ -5,7 +5,7 @@ import './index.css';
 import './App.css';
 import Root from './routes/root';
 import LandingPage from './routes/landingPage.jsx';
-import Schedule from './routes/scheduleIsSet.jsx';
+import Schedule from './routes/schedule.jsx';
 import Start from './routes/start.jsx';
 
 const router = createBrowserRouter([
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         element: <Start/>,
       },
       {
-        path:"/scheduleIsSet",
+        path:"/schedule",
         element: <Schedule       
         />
       },
