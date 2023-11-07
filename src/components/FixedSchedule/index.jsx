@@ -2,11 +2,13 @@ import React from 'react';
 import"./style.css";
 import {useState} from 'react';
 
-function HourSlot(hourValue){
+function HourSlot({hourValue, isEditable}){
     //TODO: Move logic for isActive up to setHours
     const [isActive, setIsActive] = useState('true');
     function handleClick(){
-        setIsActive(!isActive);
+        if(isEditable){
+            setIsActive(!isActive);
+        }
     }
    
 
@@ -32,29 +34,31 @@ function setHours(){
     let hours = [];
     for(let i = 1; i <24; i++){
         i > 12 ? hours[i] = `${i-12}:00 PM` : hours[i] = `${i}:00 AM`;
-        console.log(i);
     }
     hours[0] = "12:00 AM";
     hours[12] = "12:00 PM";
     return hours;
 }
 //Depends on setHours
-function initHourSlots(){
+function initHourSlots(isEditable){
     const hours = setHours();
     const hourSlots = [];
     for(let i=0; i<hours.length; i++){
-        hourSlots.push(HourSlot(hours[i]));
-        console.log(hourSlots[i]);
+        hourSlots.push(<HourSlot isEditable={isEditable} hourValue={hours[i]}/>) 
     }
     return hourSlots;
 }
 
 //Depends on initHourSlots --> setHours
-function Day({value}){
+function Day({value, isEditable}){
     const [isActive, setIsActive] = useState('true');
+    
     function toggleDay() {
-        setIsActive(!isActive);
+        if(isEditable){
+            setIsActive(!isActive);
+        }
     }
+    console.log(`isEditable? ${isEditable}`)
   
     return(
         <div className="dayslot"
@@ -72,6 +76,7 @@ function Day({value}){
                 <button 
                     className="closebutton"
                     style={{
+                        display:isEditable ? '' : 'none',
                         backgroundImage:isActive ? '' : 'none',
                         boxShadow: isActive ? '' : 'none',
                         backgroundColor: isActive ? '' : 'inherit',
@@ -84,18 +89,23 @@ function Day({value}){
             style={{
                 display:isActive? '' : 'none'
             }}>
-                {initHourSlots()}
+                {initHourSlots(isEditable)}
             </div>
         </div>
     );
 }
 
 export default function EditSchedule() {
+    const [isSubmitted, setIsSubmitted] = useState("false");
+    function handleSubmit(){
+        setIsSubmitted(!isSubmitted);
+    }
+    console.log(`isSubmitted? ${isSubmitted}`)
     return(
         <div className="weekcontainer">
 
             <div classname="daycontainer">
-                <Day value="Monday"/>
+                <Day value="Monday" isEditable={isSubmitted}/>
             </div>
 
             <div classname="daycontainer">
@@ -121,6 +131,16 @@ export default function EditSchedule() {
             <div classname="daycontainer">
                 <Day value="Sunday"/>
             </div>
+           
+    
+            <button classname="submitbutton"
+            onClick={handleSubmit}
+            style={{
+                display: isSubmitted ? '' : 'none',
+            }}>
+                Submit
+            </button>
+     
             
         </div>
     );
