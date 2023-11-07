@@ -37,6 +37,22 @@
     grid-template-columns: repeat(7, 1fr);
     column-gap: 20px;
 }
+
+.submitbuttoncontainer{
+    grid-column: 3/6;
+    height: 6rem;
+}
+.submitbutton{
+    height: 5rem;
+}
+.submitbuttoncontainer p{
+    display:flex;
+    justify-content: center;
+    margin-top:1px;
+    font-size: larger;
+    color: grey;
+}
+
 .submittedweekcontainer{
     display:grid;
     margin-top: 5px;
@@ -56,6 +72,11 @@
     width: 50.5rem;
     height: fit-content;
 }
+.submittedweekcontainer .editschedulebutton{
+    height: 30%;
+    font-size:smaller;
+}
+
 
 
 

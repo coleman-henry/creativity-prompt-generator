@@ -99,65 +99,69 @@ function Day({value, isEditable}){
 export default function EditSchedule() {
     const location = useLocation();
     const [isSubmitted, setIsSubmitted] = useState(location.state?.isSubmitted);
-    const [className, setClassName] = useState("weekcontainer");
+    const [className, setClassName] = useState(location.state?.className);
+
     console.log(location.state?.isSubmitted);
-    
 
     function handleSubmit(){
         setIsSubmitted(!isSubmitted);
         setClassName("submittedweekcontainer");
-        console.log(className);
     }
+
     console.log(`isSubmitted? ${isSubmitted}`)
     return(
         <div className={className}>
 
-            <div classname="daycontainer">
+            <div className="daycontainer">
                 <Day value="Monday" isEditable={!isSubmitted}/>
             </div>
 
-            <div classname="daycontainer">
+            <div className="daycontainer">
                 <Day value="Tuesday" isEditable={!isSubmitted}/>
             </div>            
             
-            <div classname="daycontainer">
+            <div className="daycontainer">
                 <Day value="Wednesday" isEditable={!isSubmitted}/>
             </div>            
             
-            <div classname="daycontainer">
+            <div className="daycontainer">
                 <Day value="Thursday" isEditable={!isSubmitted}/>
             </div>            
             
-            <div classname="daycontainer">
+            <div className="daycontainer">
                 <Day value="Friday" isEditable={!isSubmitted}/>
             </div>            
             
-            <div classname="daycontainer">
+            <div className="daycontainer">
                 <Day value="Saturday" isEditable={!isSubmitted}/>
             </div>            
             
-            <div classname="daycontainer">
+            <div className="daycontainer">
                 <Day value="Sunday" isEditable={!isSubmitted}/>
             </div>
            
-    
-            <button classname="submitbutton"
-            onClick={handleSubmit}
+            <div className="submitbuttoncontainer"
             style={{
-                display: isSubmitted ? 'none' : '',
+                display: isSubmitted ? 'none' : ''
             }}>
-                Submit
-            </button>
+
+                <button className="submitbutton"
+                onClick={handleSubmit}>
+                    Submit
+                </button>
+                <p>[This will save changes, but you can always edit your schedule again]</p>
+            </div>
 
             <div className="promptcontainer submittedweekcontainer"
             style={{
                 display: isSubmitted ? '' : 'none'
             }}>
                     <h1>Your prompts will appear here!</h1>
+                    <button className="editschedulebutton"
+                    onClick={handleSubmit}>
+                        Edit Schedule
+                    </button>
             </div>
-     
-            
-            
-        </div>
+        </div>   
     );
 }
