@@ -15,3 +15,28 @@
     border-radius: 10px;
     
 }
+
+.getstarted{
+    position: absolute;
+    top: 20%;
+    left: 46%;
+    width: fit-content;
+    height: 4rem;
+    background-color:rgb(141, 35, 35);
+    background-image:none;
+    box-shadow: none;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.534);
+}
+
+.button-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.cost-benefit{
+    color: grey;
+    display: flex;
+    align-self: center;
+    width: fit-content;
+    font-size: 1.1rem;
+}

@@ -76,21 +76,6 @@
     height: 30%;
     font-size:smaller;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .closebutton{
     position: absolute;
     right: 2px;
@@ -99,4 +84,45 @@
     height:fit-content;
     background-image: none;
     background-color: rgba(115, 72, 214, 0.082);
+}
+.warningdialog{
+    position:absolute;
+    top:40%;
+    left:32%;
+    background-color: rgb(255, 255, 255);
+    width:fit-content;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color:black;
+    border: 1.5px solid grey;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.411);
+    height: 15rem;
+    padding: 1rem;
+
+}
+
+.warningdialog h1{
+    margin-bottom:1rem;
+    margin-left:6rem;
+}
+.warningdialog p{
+    width: fit-content;
+    margin-top:0;
+}
+.warningdialog .buttonwrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.warningdialog button{
+    height:2.5rem;
+    width:10rem;
+    margin-bottom: 0;
+    background-color:rgb(141, 35, 35);
+    background-image:none;
+    box-shadow: none;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.534);
 }

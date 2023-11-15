@@ -1,7 +1,6 @@
 import React from 'react';
 import FixedSchedule from '../components/FixedSchedule';
 import {useState} from 'react';
-import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const SchedulePage = () => {

@@ -2,7 +2,7 @@ import React from "react";
 import {Header, HeaderH1, HeaderP} from "./BannerElements";
 
 
-const Banner = ({heading="Fill me with text", paragraph="Text please?"}) => {
+const Banner = ({heading="Welcome to Creative Prompt Generator", paragraph="Click the button below to start"}) => {
     return(
         <Header>
             <HeaderH1>

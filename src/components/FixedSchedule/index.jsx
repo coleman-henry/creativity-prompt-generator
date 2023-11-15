@@ -3,10 +3,22 @@ import"./style.css";
 import {useState} from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+
 
 function HourSlot({hourValue, isEditable}){
     //TODO: Move logic for isActive up to setHours
     const [isActive, setIsActive] = useState('true');
+
+    useEffect(() =>{
+        setIsActive(JSON.parse(window.localStorage.getItem('isActive')))
+    }, []);
+
+    useEffect(() => {
+        window.localStorage.setItem('isActive', isActive);
+    }, [isActive])
+
+
     function handleClick(){
         if(isEditable){
             setIsActive(!isActive);
@@ -101,12 +113,27 @@ export default function EditSchedule() {
     const location = useLocation();
     const [isSubmitted, setIsSubmitted] = useState(location.state?.isSubmitted);
     const [className, setClassName] = useState(location.state?.className);
+    const [dialogOpen, setDialogOpen] = useState(false);
+
+    function closeDialog(){
+        setDialogOpen(false);
+    }
+    function closeDialogHandleSubmit(){
+        setDialogOpen(false);
+        setIsSubmitted(!isSubmitted);
+        setClassName("submittedweekcontainer");
+
+    }
 
     console.log(location.state?.isSubmitted);
 
     function handleSubmit(){
         setIsSubmitted(!isSubmitted);
         setClassName("submittedweekcontainer");
+    }
+
+    function showWarning(){
+        setDialogOpen(true);
     }
 
     console.log(`isSubmitted? ${isSubmitted}`)
@@ -146,22 +173,12 @@ export default function EditSchedule() {
                 display: isSubmitted ? 'none' : ''
             }}>
 
-            <Link         
-                state={{
-                title:"Your schedule is all set up!",
-                subtitle:"Push the edit below your schedule to make changes.",
-                isSubmitted: true,
-                className: "submittedweekcontainer"
-                }}>
+         
                 <button className="submitbutton"
-                onClick={handleSubmit}>
+                onClick={showWarning}>
                     Submit
                 </button>
-            </Link>
-
-
-
-                <p>[This will save changes, but you can always edit your schedule again]</p>
+                <p>This will save changes, but you can always edit your schedule again</p>
             </div>
 
 
@@ -181,11 +198,37 @@ export default function EditSchedule() {
                 className: "weekcontainer"
                 }}>
                     <button className="editschedulebutton"
-                    onClick={handleSubmit}>
+                        onClick={handleSubmit}>
                         Edit Schedule
                     </button>
                 </Link>
+
+            </div>
+
+            <div className="warningdialog"
+                style={{
+                    display: dialogOpen? '' : 'none'
+                }}>
+           
+                    <h1>
+                        Are you sure you want to submit?
+                    </h1>
+                    <p>
+                        If you change your mind, you'll still have the option to edit your schedule again.
+                    </p>
+                <div className="buttonwrapper">
+           
+                        <button  onClick={closeDialog}>Cancel</button>
+  
+
+                        <button  onClick={closeDialogHandleSubmit}>Submit</button>
+                    
+  
+                </div>
+
+          
             </div>
         </div>   
     );
 }
+

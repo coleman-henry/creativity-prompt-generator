@@ -30,8 +30,8 @@ const Root = (props) => {
           style={{
             display: isHidden ? 'none' : '',
           }}>
-            <button onClick={hideLink}>
-              Get Started! Click Here.
+            <button className="getstarted" onClick={hideLink}>
+              Get Started
             </button>
         </Link>
           <Outlet/>
