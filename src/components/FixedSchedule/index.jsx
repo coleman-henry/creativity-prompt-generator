@@ -113,7 +113,11 @@ export default function EditSchedule() {
     const location = useLocation();
     const [isSubmitted, setIsSubmitted] = useState(location.state?.isSubmitted);
     const [className, setClassName] = useState(location.state?.className);
+    const [bannerHeading, setBannerHeading] = useState(location.state?.title);
+    const [bannerParagraph, setBannerParagraph] = useState(location.state?.subtitle);
     const [dialogOpen, setDialogOpen] = useState(false);
+
+
 
     function closeDialog(){
         setDialogOpen(false);
@@ -122,6 +126,8 @@ export default function EditSchedule() {
         setDialogOpen(false);
         setIsSubmitted(!isSubmitted);
         setClassName("submittedweekcontainer");
+        setBannerHeading("Your Schedule is all set up!");
+        setBannerParagraph("Push the edit button below your schedule to make changes");
 
     }
 
@@ -192,8 +198,8 @@ export default function EditSchedule() {
 
                 <Link         
                 state={{
-                title:"Get Started",
-                subtitle:"Get Prompts once per day or create a custom schedule",
+                title:"Customize your Schedule",
+                subtitle:"Click hour slots to toggle availability (green=on, grey=off). Click the corner buttons to toggle entire days (plus turns on, x turns off).",
                 isSubmitted: false,
                 className: "weekcontainer"
                 }}>
@@ -220,8 +226,15 @@ export default function EditSchedule() {
            
                         <button  onClick={closeDialog}>Cancel</button>
   
-
-                        <button  onClick={closeDialogHandleSubmit}>Submit</button>
+                        <Link         
+                            state={{
+                            title:"Your schedule is all set up!",
+                            subtitle:"Push the edit button below your schedule to make changes.",
+                            isSubmitted: false,
+                            className: "warningdialogbutton"
+                            }}>
+                                <button  onClick={closeDialogHandleSubmit}>Submit</button>
+                        </Link>
                     
   
                 </div>

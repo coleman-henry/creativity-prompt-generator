@@ -121,8 +121,12 @@
     height:2.5rem;
     width:10rem;
     margin-bottom: 0;
+    margin-left: 120px;
     background-color:rgb(141, 35, 35);
     background-image:none;
     box-shadow: none;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.534);
 }
+
+
+

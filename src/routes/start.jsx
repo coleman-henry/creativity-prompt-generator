@@ -15,7 +15,7 @@ import './style.css'
                         to ="/schedule"  
                         state={{
                         title:"Your schedule is all set up!",
-                        subtitle:"Push the edit below your schedule to make changes.",
+                        subtitle:"Push the edit button below your schedule to make changes.",
                         isSubmitted: true,
                         className: "submittedweekcontainer"
                         }}>
